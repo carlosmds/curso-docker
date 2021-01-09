@@ -15,8 +15,10 @@ class Sender(Bottle):
 
         db_host = os.getenv('DB_HOST', 'db')
         db_user = os.getenv('DB_USER', 'postgres')
-        db_name = os.getenv('DB_NAME', 'sender')
-        dsn = f'dbname={db_name} user={db_user} host={db_host}'
+        db_pass = os.getenv('DB_PASS', 'admin')
+        db_name = os.getenv('DB_NAME', 'email_sender')
+
+        dsn = f'dbname={db_name} user={db_user} password={db_pass} host={db_host}'
         self.conn = psycopg2.connect(dsn)
         
     def register_message(self, assunto, mensagem):
